@@ -33,14 +33,14 @@ public class Main {
     }
 
     // output strings line by line
-    System.out.println("Line by line output:");
+    System.out.println("\nLine by line output:");
     for (int i = 0; i < number; i++) {
       System.out.println((i + 1) + ". " + strings[i]);
     }
     System.out.println();
 
     // output strings in one line
-    System.out.println("Line by line output:");
+    System.out.println("One line output:");
     for (int i = 0; i < number; i++) {
       System.out.print(strings[i] + " || ");
     }

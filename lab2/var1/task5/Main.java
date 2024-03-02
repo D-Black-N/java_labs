@@ -36,16 +36,28 @@ public class Main {
       words[i] = sc.nextLine().replaceFirst("^\\s*", "").split(" ")[0]; // remove spaces before word, take only first word before space
     }
 
-  //   // output words with only latin symbols and count words with equal vowels and consonants
+    // output words with only latin symbols and count words with equal vowels and consonants
     String latinPattern = "^\\w+$";
     int latinCounter = 0;
+    int equalLetters = 0;
     System.out.println("Output words with only latin symbols:");
     for (String word: words) {
       if (Pattern.matches(latinPattern, word)) {
         ++latinCounter;
         System.out.println(word);
+        int vowCount = 0;
+        int consCount = 0;
+        for (char letter: word.toCharArray()) {
+          if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'y' || letter == 'u') {
+            vowCount++;
+          } else {
+            consCount++;
+          }
+        }
+        if (vowCount == consCount) equalLetters++;
       }
     }
     System.out.println("Words number with only latins symbols: " + latinCounter);
+    System.out.println("Words number with equal vowel and consonant letters: " + equalLetters);
   }
 }
