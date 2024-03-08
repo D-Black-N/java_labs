@@ -7,10 +7,14 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 import lab6.var2.task6.lines.*;
 
 import java.lang.IllegalArgumentException;
+import java.io.IOException;
 
 public class Main {
   public static void main(String[] args) {
@@ -53,7 +57,23 @@ public class Main {
     System.out.println("\n########## Print lines with points ##########");
     for (Map.Entry<Line, Set<Point>> line : linesWithPoints.entrySet()) {
       System.out.println(line);
-      System.out.println();
+    }
+
+    System.out.println("\n########## Print lines to file ##########");
+    String filePath = "/app/lab6/var2/task6/data/file.txt";
+    File file = new File(filePath);
+    BufferedWriter bf = null;
+    try {
+      bf = new BufferedWriter(new FileWriter(file)); 
+      for (Map.Entry<Line, Set<Point>> line : linesWithPoints.entrySet()) {
+        bf.write(line.getKey() + " = " + line.getValue());
+        bf.newLine();
+      }
+      bf.flush();
+    } catch (IOException e) { 
+      System.out.println(e.getMessage());
+    } finally {
+      try { bf.close(); } catch (Exception e) {}
     }
   }
 }
